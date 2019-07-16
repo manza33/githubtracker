@@ -6,14 +6,15 @@ public class Githuber {
     private String name;
     private  String email;
     private String login;
-    private String id;
+    private int id;
     private String avatarUrl;
 
-    public Githuber(String name, String email, String login, String avatarUrl) {
+    public Githuber(int id, String name, String email, String login, String avatarUrl) {
         this.name = name;
         this.email = email;
         this.login = login;
         this.avatarUrl = avatarUrl;
+        this.id = id;
     }
 
     public String getName() {
@@ -28,7 +29,7 @@ public class Githuber {
         return login;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

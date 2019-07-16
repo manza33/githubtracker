@@ -6,19 +6,28 @@
 
 <%@include file="header.jsp" %>
 
-<p>
-    <%
-        /*List<Githuber> githubers = (List<Githuber>) request.getAttribute("githubersAttibute");
-        for (Githuber githuber : githubers) {
-            PrintWriter out = response.getWriter();
-            out.print(githuber.getName() + "<br>");
-        }*/
-    %>
-    <c:forEach items="${githubersAttribute}" var="githuber">
-        ${githuber.name} <br>
-    </c:forEach>
-
-
-</p>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">email</th>
+                <th scope="col">login</th>
+                <th scope="col">avatarUrl</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${githubersAttribute}" var="githuber">
+                <tr>
+                    <td>${githuber.id}</td>
+                    <td>${githuber.name}</td>
+                    <td>${githuber.email}</td>
+                    <td>${githuber.login}</td>
+                    <td>${githuber.avatarUrl}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
