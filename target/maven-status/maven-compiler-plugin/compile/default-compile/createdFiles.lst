@@ -1,2 +1,5 @@
 fr/wildcodeschool/githubtracker/controller/GithubersServlet.class
+fr/wildcodeschool/githubtracker/dao/DumbGithuberDAO.class
+fr/wildcodeschool/githubtracker/dao/GithuberDAO.class
+fr/wildcodeschool/githubtracker/service/GithubersService.class
 fr/wildcodeschool/githubtracker/model/Githuber.class
