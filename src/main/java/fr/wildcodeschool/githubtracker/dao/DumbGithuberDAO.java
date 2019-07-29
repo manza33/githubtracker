@@ -24,4 +24,9 @@ public class DumbGithuberDAO implements GithuberDAO {
 
         return Collections.unmodifiableList(githubers);
     }
+
+    @Override
+    public void saveGithuber(Githuber githuber) throws UnsupportedOperationException  {
+
+    }
 }

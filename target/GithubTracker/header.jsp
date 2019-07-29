@@ -25,7 +25,7 @@
                     <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="GithubersServlet">githubers</a>
+                    <a class="nav-link" href="githubers">githubers</a>
                 </li>
             </ul>
         </div>
