@@ -6,6 +6,13 @@
 
 <%@include file="header.jsp" %>
 
+        <form class="form-inline" action="track" method="post">
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="login" class="sr-only">Login</label>
+                <input type="text" class="form-control" id="login" placeholder="Login" name="login">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Search</button>
+        </form>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -17,13 +24,13 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${githubersAttribute}" var="githuber">
+            <c:forEach var="githuber" items="${githubersAttribute}" >
                 <tr>
                     <td>${githuber.id}</td>
                     <td>${githuber.name}</td>
                     <td>${githuber.email}</td>
                     <td>${githuber.login}</td>
-                    <td>${githuber.avatarUrl}</td>
+                    <td><img src="${githuber.avatarUrl}" width="100px"></td>
                 </tr>
             </c:forEach>
             </tbody>
