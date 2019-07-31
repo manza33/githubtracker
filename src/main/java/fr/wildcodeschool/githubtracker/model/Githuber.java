@@ -1,11 +1,7 @@
 package fr.wildcodeschool.githubtracker.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import fr.wildcodeschool.githubtracker.producer.ObjectMapperProducer;
-
-import javax.inject.Inject;
 
 public class Githuber {
 
@@ -16,7 +12,6 @@ public class Githuber {
     private String avatarUrl;
 
     @JsonCreator
-    //public Githuber(int id, String name, String email, String login, String avatarUrl) {
     public Githuber(
         @JsonProperty("id") int id,
         @JsonProperty("name") String name,

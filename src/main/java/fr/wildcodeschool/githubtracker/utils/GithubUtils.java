@@ -2,7 +2,6 @@ package fr.wildcodeschool.githubtracker.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.wildcodeschool.githubtracker.model.Githuber;
-import fr.wildcodeschool.githubtracker.producer.ObjectMapperProducer;
 
 import javax.inject.Inject;
 import java.io.IOException;

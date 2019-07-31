@@ -2,7 +2,6 @@ package fr.wildcodeschool.githubtracker.service;
 
 import fr.wildcodeschool.githubtracker.dao.GithuberDAO;
 import fr.wildcodeschool.githubtracker.dao.InMemory;
-import fr.wildcodeschool.githubtracker.dao.MemoryGithuberDAO;
 import fr.wildcodeschool.githubtracker.model.Githuber;
 import fr.wildcodeschool.githubtracker.utils.GithubUtils;
 
@@ -15,8 +14,7 @@ import java.util.List;
 public class GithubersService {
 
     @Inject @InMemory GithuberDAO githuberDAO;
-    //@Inject private GithubUtils githubUtils;
-
+    @Inject private GithubUtils githubUtils;
 
     @Inject
     public GithubersService(GithuberDAO githuberDAO) {
@@ -38,11 +36,7 @@ public class GithubersService {
         return theGithuber;
     }
 
-
     public void track(String login) throws IOException {
-        //TODO
-        //githuberDAO.saveGithuber(githubUtils.parseGithuber(login));
+        githuberDAO.saveGithuber(githubUtils.parseGithuber(login));
     }
-
-
 }

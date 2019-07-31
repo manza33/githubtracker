@@ -37,7 +37,6 @@ public class MemoryGithuberDAO implements GithuberDAO {
         return finalGithubersList;
     }
 
-    //@PostConstruct
     @Override
     public void saveGithuber(Githuber githuber) throws IOException {
         githubersMap.put(githuber.getLogin(), githuber);

@@ -19,7 +19,4 @@ public class GithubersServlet extends javax.servlet.http.HttpServlet {
         request.setAttribute( "githubersAttribute",githubersService.getAllGithubers());
         this.getServletContext().getRequestDispatcher( "/githubers.jsp" ).forward( request, response);
     }
-
-    //protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {}
-
 }
