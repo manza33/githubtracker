@@ -15,12 +15,14 @@ public class MemoryGithuberDAO implements GithuberDAO {
 
     @Inject private GithubUtils githubUtils;
 
-    private Map<String, Githuber> githubersMap= new HashMap<>();
+    private Map<String, Githuber> githubersMap = new HashMap<>();
 
     Logger logger = Logger.getLogger("logger");
 
+
     @PostConstruct
     private void postConstruct() {
+
         String[] loginArray = {"veropichon","manza33", "valerianm", "mariehelene","Laureenrinadumas" };
         for ( String login : loginArray){
             try{
@@ -33,6 +35,7 @@ public class MemoryGithuberDAO implements GithuberDAO {
 
     @Override
     public List<Githuber> getGithubers() throws IOException {
+        logger.info("Hello from getGithubers!");
         List<Githuber> finalGithubersList =  new ArrayList<>(githubersMap.values());
         return finalGithubersList;
     }
