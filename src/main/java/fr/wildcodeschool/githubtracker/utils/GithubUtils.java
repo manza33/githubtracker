@@ -12,10 +12,20 @@ public class GithubUtils {
     @Inject private ObjectMapper om;
 
     private final String APIURL = "https://api.github.com/users/";
+    private  Githuber newGithuber = null;
 
     public Githuber parseGithuber(String login) throws IOException {
         String githuberAPI = APIURL + login;
-        Githuber newGithuber = om.readValue(new URL(githuberAPI), Githuber.class);
-        return newGithuber;
+        try{
+            newGithuber = om.readValue(new URL(githuberAPI), Githuber.class);
+        }catch (Exception e){
+            e.getMessage();
+        }
+        if (newGithuber != null){
+            return newGithuber;
+        }else {
+            throw new java.lang.Error("This githuber doesn't exist");
+        }
+
     }
 }

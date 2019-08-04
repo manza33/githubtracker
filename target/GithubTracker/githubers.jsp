@@ -24,15 +24,21 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="githuber" items="${githubersAttribute}" >
-                <tr>
-                    <td>${githuber.id}</td>
-                    <td>${githuber.name}</td>
-                    <td>${githuber.email}</td>
-                    <td>${githuber.login}</td>
-                    <td><img src="${githuber.avatarUrl}" width="100px"></td>
-                </tr>
-            </c:forEach>
+            <form method="post" action="unTrack" name="FormUnTrack">
+                <c:forEach var="githuber" items="${githubersAttribute}" >
+                    <tr>
+                        <td>${githuber.github_id}</td>
+                        <td>${githuber.name}</td>
+                        <td>${githuber.email}</td>
+                        <td>${githuber.login}</td>
+                        <td><img src="${githuber.avatarUrl}" width="100px"></td>
+                        <td>
+                            <input name="deleteLogin" type="hidden" value="${githuber.login}">
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </form>
             </tbody>
 
         </table>

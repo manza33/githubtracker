@@ -1,32 +1,37 @@
 package fr.wildcodeschool.githubtracker.service;
 
-import fr.wildcodeschool.githubtracker.dao.GithuberDAO;
-import fr.wildcodeschool.githubtracker.dao.InMemory;
+import fr.wildcodeschool.githubtracker.dao.*;
 import fr.wildcodeschool.githubtracker.model.Githuber;
 import fr.wildcodeschool.githubtracker.utils.GithubUtils;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @Dependent
 public class GithubersService {
 
-    @Inject @InMemory GithuberDAO githuberDAO;
+    private GithuberDAO githuberDAO;
     @Inject private GithubUtils githubUtils;
+    @Inject private GetGithuberFromBddDAO getGithuberFromBddDAO;
+    @Inject private AddGithuberToBddDAO addGithuberToBddDAO;
+    @Inject private DeleteGithuberFromBdd deleteGithuberFromBdd;
 
     @Inject
-    public GithubersService(GithuberDAO githuberDAO) {
+    public GithubersService( @InMemory GithuberDAO githuberDAO) {
         this.githuberDAO = githuberDAO;
     }
 
-    public List<Githuber> getAllGithubers() throws IOException {
-        return githuberDAO.getGithubers();
+    public List<Githuber> getAllGithubers(HttpServletRequest request) throws IOException, SQLException {
+        return getGithuberFromBddDAO.getGithubersFromBdd(request);
+
     }
 
-    public Githuber getGithuber(String login) throws IOException {
-        List<Githuber> allGithuber = getAllGithubers();
+    public Githuber getGithuber(HttpServletRequest request, String login) throws IOException, SQLException {
+        List<Githuber> allGithuber = getAllGithubers(request);
 
         Githuber theGithuber = allGithuber.stream()
                 .filter(githuber -> login.equals(githuber.getLogin()))
@@ -36,7 +41,12 @@ public class GithubersService {
         return theGithuber;
     }
 
-    public void track(String login) throws IOException {
-        githuberDAO.saveGithuber(githubUtils.parseGithuber(login));
+    public void track(HttpServletRequest request, String login) throws IOException, SQLException {
+        addGithuberToBddDAO.githubersToBdd(request, githubUtils.parseGithuber(login));
     }
+
+    public void unTrack(HttpServletRequest request, String login) throws IOException, SQLException {
+        deleteGithuberFromBdd.deleteGithuberFromBdd(request, login);
+    }
+
 }

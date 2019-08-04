@@ -10,7 +10,8 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.util.*;
 
-@ApplicationScoped @InMemory
+@ApplicationScoped
+@InMemory
 public class MemoryGithuberDAO implements GithuberDAO {
 
     @Inject private GithubUtils githubUtils;
@@ -35,7 +36,7 @@ public class MemoryGithuberDAO implements GithuberDAO {
 
     @Override
     public List<Githuber> getGithubers() throws IOException {
-        logger.info("Hello from getGithubers!");
+        //logger.info("Hello from getGithubers!");
         List<Githuber> finalGithubersList =  new ArrayList<>(githubersMap.values());
         return finalGithubersList;
     }

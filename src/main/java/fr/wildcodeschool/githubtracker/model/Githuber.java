@@ -5,15 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Githuber {
 
+
     private String name;
     private  String email;
     private String login;
-    private int id;
+    private int github_id;
     private String avatarUrl;
 
     @JsonCreator
     public Githuber(
-        @JsonProperty("id") int id,
+        @JsonProperty("id") int github_id,
         @JsonProperty("name") String name,
         @JsonProperty("email") String email,
         @JsonProperty("login") String login,
@@ -23,7 +24,7 @@ public class Githuber {
         this.email = email;
         this.login = login;
         this.avatarUrl = avatar_url;
-        this.id = id;
+        this.github_id = github_id;
     }
 
     public String getName() {
@@ -38,8 +39,8 @@ public class Githuber {
         return login;
     }
 
-    public int getId() {
-        return id;
+    public int getGithub_id() {
+        return github_id;
     }
 
     public String getAvatarUrl() {

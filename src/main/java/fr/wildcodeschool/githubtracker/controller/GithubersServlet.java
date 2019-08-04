@@ -4,6 +4,7 @@ import fr.wildcodeschool.githubtracker.service.GithubersService;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 @javax.servlet.annotation.WebServlet("/githubers")
@@ -13,10 +14,11 @@ public class GithubersServlet extends javax.servlet.http.HttpServlet {
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
 
-        //GithuberDAO githuberDAO = new DumbGithuberDAO();
-        //GithubersService githubersService = new GithubersService(githuberDAO);
-
-        request.setAttribute( "githubersAttribute",githubersService.getAllGithubers());
+        try {
+            request.setAttribute( "githubersAttribute",githubersService.getAllGithubers(request));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         this.getServletContext().getRequestDispatcher( "/githubers.jsp" ).forward( request, response);
     }
 }
