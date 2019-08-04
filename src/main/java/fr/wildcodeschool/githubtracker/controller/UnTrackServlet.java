@@ -15,12 +15,16 @@ import java.sql.SQLException;
 
 @WebServlet(name = "unTrackServlet", urlPatterns = "/unTrack")
 public class UnTrackServlet extends HttpServlet {
-    @Inject GithubersService githubersService;
+    @Inject
+    GithubersService githubersService;
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String deleteLogin = request.getParameter("deleteLogin");
+
+        PrintWriter out = response.getWriter();
+        out.println(deleteLogin);
 
         try {
             githubersService.unTrack(request, deleteLogin);
@@ -28,11 +32,10 @@ public class UnTrackServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        response.sendRedirect("githubers" );
-
+        response.sendRedirect("githubers");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
+        //PrintWriter out = response.getWriter();
     }
 }

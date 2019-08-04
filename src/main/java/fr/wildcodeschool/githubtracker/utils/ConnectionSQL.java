@@ -1,10 +1,46 @@
 package fr.wildcodeschool.githubtracker.utils;
+
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.sql.*;
 
 public class ConnectionSQL {
 
+    @Resource(mappedName = "jdbc/githuber")
+    private DataSource dataSource;
+
+    //Connection connection = null;
 
     public Connection startConnection() throws SQLException {
+        //connection = dataSource.getConnection();
+        return dataSource.getConnection();
+    }
+
+
+    public void closeSQL(ResultSet resultat, Statement statement, Connection connexion) throws SQLException {
+
+        if (resultat != null) {
+            try {
+                resultat.close();
+            } catch (SQLException ignore) {
+            }
+        }
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException ignore) {
+            }
+        }
+        if (connexion != null) {
+            try {
+                connexion.close();
+            } catch (SQLException ignore) {
+            }
+        }
+    }
+}
+
+    /*public Connection startConnection() throws SQLException {
         try {
             Class.forName( "com.mysql.jdbc.Driver" );
 
@@ -20,27 +56,4 @@ public class ConnectionSQL {
         connection = DriverManager.getConnection( url, utilisateur, motDePasse );
         return connection;
 
-    }
-
-    public void closeSQL(ResultSet resultat, Statement statement, Connection connexion) throws SQLException{
-
-        if ( resultat != null ) {
-            try {
-                resultat.close();
-            } catch ( SQLException ignore ) {
-            }
-        }
-        if ( statement != null ) {
-            try {
-                statement.close();
-            } catch ( SQLException ignore ) {
-            }
-        }
-        if ( connexion != null ) {
-            try {
-                connexion.close();
-            } catch ( SQLException ignore ) {
-            }
-        }
-    }
-}
+    }*/
