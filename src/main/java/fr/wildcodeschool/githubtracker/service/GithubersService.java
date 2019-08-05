@@ -1,6 +1,7 @@
 package fr.wildcodeschool.githubtracker.service;
 
-import fr.wildcodeschool.githubtracker.dao.*;
+import fr.wildcodeschool.githubtracker.dao.GithuberDAO;
+import fr.wildcodeschool.githubtracker.dao.InBdd;
 import fr.wildcodeschool.githubtracker.model.Githuber;
 import fr.wildcodeschool.githubtracker.utils.GithubUtils;
 
@@ -15,19 +16,17 @@ import java.util.List;
 public class GithubersService {
 
     private GithuberDAO githuberDAO;
-    @Inject private GithubUtils githubUtils;
-    //@Inject private GetGithuberFromBddDAO getGithuberFromBddDAO;
-    //@Inject private AddGithuberToBddDAO addGithuberToBddDAO;
-    //@Inject private DeleteGithuberFromBdd deleteGithuberFromBdd;
+    @Inject
+    private GithubUtils githubUtils;
+    private Githuber trackGithuber = null;
 
     @Inject
-    public GithubersService( @InBdd GithuberDAO githuberDAO) {
+    public GithubersService(@InBdd GithuberDAO githuberDAO) {
         this.githuberDAO = githuberDAO;
     }
 
     public List<Githuber> getAllGithubers() throws IOException, SQLException {
         return githuberDAO.getGithubers();
-
     }
 
     public Githuber getGithuber(HttpServletRequest request, String login) throws IOException, SQLException {
@@ -41,11 +40,17 @@ public class GithubersService {
         return theGithuber;
     }
 
-    public void track(String login) throws IOException, SQLException {
-        githuberDAO.saveGithuber( githubUtils.parseGithuber(login));
+    public Githuber track(String login) throws IOException, SQLException {
+
+        trackGithuber = githubUtils.parseGithuber(login);
+
+        if (trackGithuber != null) {
+            githuberDAO.saveGithuber(trackGithuber);
+        }
+        return trackGithuber;
     }
 
-    public void unTrack(String login) throws IOException, SQLException {
+    public void unTrack(String login) throws SQLException {
         githuberDAO.deleteGithuber(login);
     }
 

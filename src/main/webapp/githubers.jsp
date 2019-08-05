@@ -6,7 +6,15 @@
 
 <%@include file="header.jsp" %>
 
-<div class = "add_githuber">
+
+<c:if test="${not empty message}">
+    ${message}
+</c:if>
+<c:if test="${empty message}">
+    Veuillez choisir un githuber
+</c:if>
+
+<div class="add_githuber">
     <form class="form-inline" action="track" method="post">
         <div class="form-group mx-sm-3 mb-2">
             <label for="login" class="sr-only">Login</label>

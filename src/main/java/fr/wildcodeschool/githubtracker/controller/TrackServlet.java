@@ -1,5 +1,6 @@
 package fr.wildcodeschool.githubtracker.controller;
 
+import fr.wildcodeschool.githubtracker.model.Githuber;
 import fr.wildcodeschool.githubtracker.service.GithubersService;
 
 import javax.inject.Inject;
@@ -13,20 +14,41 @@ import java.sql.SQLException;
 @WebServlet(name = "TrackServlet", urlPatterns = "/track")
 public class TrackServlet extends HttpServlet {
 
-
     @Inject
     GithubersService githubersService;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+        Githuber git = null;
         String login = request.getParameter("login");
+        String errorMessage = "";
+        boolean isError = false;
 
-        try {
-            githubersService.track(login); // Passe par la method Track dans service au lieu d'utiliser directement MemoryGithuberDAO
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (!login.isEmpty()) {
+            try {
+                git = githubersService.track(login);
+                if (git == null) {
+                    errorMessage = "Le githuber que vous avez saisi n'existe pas";
+                    isError = true;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            errorMessage = "Vous n'avez pas saisi de githuber, veuillez en saisir un";
+            isError = true;
         }
 
-        response.sendRedirect("githubers");
+        if (isError) {
+            try {
+                request.setAttribute("githubersAttribute", githubersService.getAllGithubers());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            request.setAttribute("message", errorMessage);
+            this.getServletContext().getRequestDispatcher("/githubers.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("githubers");
+        }
     }
+
 }

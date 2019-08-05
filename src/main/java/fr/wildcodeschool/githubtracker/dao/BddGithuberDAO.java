@@ -4,7 +4,6 @@ import fr.wildcodeschool.githubtracker.model.Githuber;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.*;

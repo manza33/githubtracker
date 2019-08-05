@@ -7,18 +7,18 @@ public class Githuber {
 
 
     private String name;
-    private  String email;
+    private String email;
     private String login;
     private int github_id;
     private String avatarUrl;
 
     @JsonCreator
     public Githuber(
-        @JsonProperty("id") int github_id,
-        @JsonProperty("name") String name,
-        @JsonProperty("email") String email,
-        @JsonProperty("login") String login,
-        @JsonProperty("avatar_url") String avatar_url) {
+            @JsonProperty("id") int github_id,
+            @JsonProperty("name") String name,
+            @JsonProperty("email") String email,
+            @JsonProperty("login") String login,
+            @JsonProperty("avatar_url") String avatar_url) {
 
         this.name = name;
         this.email = email;

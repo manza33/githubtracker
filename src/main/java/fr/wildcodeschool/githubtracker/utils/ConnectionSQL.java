@@ -2,7 +2,10 @@ package fr.wildcodeschool.githubtracker.utils;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConnectionSQL {
 
