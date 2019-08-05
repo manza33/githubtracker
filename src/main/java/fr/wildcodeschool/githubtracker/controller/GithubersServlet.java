@@ -15,7 +15,7 @@ public class GithubersServlet extends javax.servlet.http.HttpServlet {
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
 
         try {
-            request.setAttribute( "githubersAttribute",githubersService.getAllGithubers(request));
+            request.setAttribute( "githubersAttribute",githubersService.getAllGithubers());
         } catch (SQLException e) {
             e.printStackTrace();
         }

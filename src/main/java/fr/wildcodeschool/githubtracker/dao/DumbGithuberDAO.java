@@ -3,6 +3,7 @@ package fr.wildcodeschool.githubtracker.dao;
 import fr.wildcodeschool.githubtracker.model.Githuber;
 
 import javax.enterprise.context.Dependent;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,5 +29,10 @@ public class DumbGithuberDAO implements GithuberDAO {
     @Override
     public void saveGithuber(Githuber githuber) {
         throw(new UnsupportedOperationException());
+    }
+
+    @Override
+    public void deleteGithuber(String login) throws SQLException {
+
     }
 }

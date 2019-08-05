@@ -12,9 +12,6 @@ public class AddGithuberToBddDAO {
     @Resource(mappedName = "jdbc/githuber")
     private DataSource dataSource;
 
-    public AddGithuberToBddDAO() {
-    }
-
     public void githubersToBdd(HttpServletRequest request, Githuber githuber) throws SQLException {
 
         // Connexion a SQL
@@ -31,6 +28,7 @@ public class AddGithuberToBddDAO {
         preparedStatement.setObject(4, githuber.getAvatarUrl(), Types.VARCHAR);
         preparedStatement.setObject(5, new Integer(githuber.getGithub_id()), Types.INTEGER);
         preparedStatement.executeUpdate();
+
 
         // Deconnexion
         if (resultat != null) {

@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 
 @ApplicationScoped
@@ -44,5 +45,10 @@ public class MemoryGithuberDAO implements GithuberDAO {
     @Override
     public void saveGithuber(Githuber githuber) throws IOException {
         githubersMap.put(githuber.getLogin(), githuber);
+    }
+
+    @Override
+    public void deleteGithuber(String login) throws SQLException {
+
     }
 }

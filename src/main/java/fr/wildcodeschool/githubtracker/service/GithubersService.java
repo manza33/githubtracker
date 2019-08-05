@@ -16,22 +16,22 @@ public class GithubersService {
 
     private GithuberDAO githuberDAO;
     @Inject private GithubUtils githubUtils;
-    @Inject private GetGithuberFromBddDAO getGithuberFromBddDAO;
-    @Inject private AddGithuberToBddDAO addGithuberToBddDAO;
-    @Inject private DeleteGithuberFromBdd deleteGithuberFromBdd;
+    //@Inject private GetGithuberFromBddDAO getGithuberFromBddDAO;
+    //@Inject private AddGithuberToBddDAO addGithuberToBddDAO;
+    //@Inject private DeleteGithuberFromBdd deleteGithuberFromBdd;
 
     @Inject
-    public GithubersService( @InMemory GithuberDAO githuberDAO) {
+    public GithubersService( @InBdd GithuberDAO githuberDAO) {
         this.githuberDAO = githuberDAO;
     }
 
-    public List<Githuber> getAllGithubers(HttpServletRequest request) throws IOException, SQLException {
-        return getGithuberFromBddDAO.getGithubersFromBdd(request);
+    public List<Githuber> getAllGithubers() throws IOException, SQLException {
+        return githuberDAO.getGithubers();
 
     }
 
     public Githuber getGithuber(HttpServletRequest request, String login) throws IOException, SQLException {
-        List<Githuber> allGithuber = getAllGithubers(request);
+        List<Githuber> allGithuber = getAllGithubers();
 
         Githuber theGithuber = allGithuber.stream()
                 .filter(githuber -> login.equals(githuber.getLogin()))
@@ -41,12 +41,12 @@ public class GithubersService {
         return theGithuber;
     }
 
-    public void track(HttpServletRequest request, String login) throws IOException, SQLException {
-        addGithuberToBddDAO.githubersToBdd(request, githubUtils.parseGithuber(login));
+    public void track(String login) throws IOException, SQLException {
+        githuberDAO.saveGithuber( githubUtils.parseGithuber(login));
     }
 
-    public void unTrack(HttpServletRequest request, String login) throws IOException, SQLException {
-        deleteGithuberFromBdd.deleteGithuberFromBdd(request, login);
+    public void unTrack(String login) throws IOException, SQLException {
+        githuberDAO.deleteGithuber(login);
     }
 
 }

@@ -27,7 +27,7 @@ public class UnTrackServlet extends HttpServlet {
         out.println(deleteLogin);
 
         try {
-            githubersService.unTrack(request, deleteLogin);
+            githubersService.unTrack(deleteLogin);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -7,9 +7,11 @@ fr/wildcodeschool/githubtracker/dao/DeleteGithuberFromBdd.class
 fr/wildcodeschool/githubtracker/controller/UnTrackServlet.class
 fr/wildcodeschool/githubtracker/service/GithubersService.class
 fr/wildcodeschool/githubtracker/dao/AddGithuberToBddDAO.class
+fr/wildcodeschool/githubtracker/dao/BddGithuberDAO.class
 fr/wildcodeschool/githubtracker/dao/InMemory.class
 fr/wildcodeschool/githubtracker/utils/ConnectionSQL.class
 fr/wildcodeschool/githubtracker/producer/ObjectMapperProducer.class
+fr/wildcodeschool/githubtracker/dao/InBdd.class
 fr/wildcodeschool/githubtracker/controller/GithubersServlet.class
 fr/wildcodeschool/githubtracker/dao/DumbGithuberDAO.class
 fr/wildcodeschool/githubtracker/model/Githuber.class

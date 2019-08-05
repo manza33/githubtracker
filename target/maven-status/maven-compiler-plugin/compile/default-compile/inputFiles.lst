@@ -1,8 +1,10 @@
 /home/laetitia/WCS/Quetes/GithubTracker/src/main/java/fr/wildcodeschool/githubtracker/producer/ObjectMapperProducer.java
 /home/laetitia/WCS/Quetes/GithubTracker/src/main/java/fr/wildcodeschool/githubtracker/controller/GithubersServlet.java
 /home/laetitia/WCS/Quetes/GithubTracker/src/main/java/fr/wildcodeschool/githubtracker/controller/UnTrackServlet.java
+/home/laetitia/WCS/Quetes/GithubTracker/src/main/java/fr/wildcodeschool/githubtracker/dao/InBdd.java
 /home/laetitia/WCS/Quetes/GithubTracker/src/main/java/fr/wildcodeschool/githubtracker/utils/GithubUtils.java
 /home/laetitia/WCS/Quetes/GithubTracker/src/main/java/fr/wildcodeschool/githubtracker/dao/DeleteGithuberFromBdd.java
+/home/laetitia/WCS/Quetes/GithubTracker/src/main/java/fr/wildcodeschool/githubtracker/dao/BddGithuberDAO.java
 /home/laetitia/WCS/Quetes/GithubTracker/src/main/java/fr/wildcodeschool/githubtracker/dao/AddGithuberToBddDAO.java
 /home/laetitia/WCS/Quetes/GithubTracker/src/main/java/fr/wildcodeschool/githubtracker/dao/InMemory.java
 /home/laetitia/WCS/Quetes/GithubTracker/src/main/java/fr/wildcodeschool/githubtracker/controller/TrackServlet.java
