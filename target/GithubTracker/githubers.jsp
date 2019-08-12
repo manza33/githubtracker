@@ -14,7 +14,7 @@
     Veuillez choisir un githuber
 </c:if>
 
-<div class = "add_githuber">
+<div class="add_githuber">
     <form class="form-inline" action="track" method="post">
         <div class="form-group mx-sm-3 mb-2">
             <label for="login" class="sr-only">Login</label>

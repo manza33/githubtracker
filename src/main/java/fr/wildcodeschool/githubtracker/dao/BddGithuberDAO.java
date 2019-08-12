@@ -22,31 +22,27 @@ public class BddGithuberDAO implements GithuberDAO {
     public List<Githuber> getGithubers() throws IOException, SQLException {
         List<Githuber> githubersFromBdd = new ArrayList<>();
 
-        Statement statement = null;
+        //Statement statement = null;
         ResultSet resultat = null;
 
         // Connexion a SQL
         Connection connection = dataSource.getConnection();
-        statement = connection.createStatement();
+        //statement = connection.createStatement();
 
-        resultat = statement.executeQuery("SELECT * FROM githuber;");
+        try (Statement statement = connection.createStatement()) {
 
-        while (resultat.next()) {
-            String name = resultat.getString("name");
-            String email = resultat.getString("email");
-            String login = resultat.getString("login");
-            String avatarUrl = resultat.getString("avatar_url");
-            int github_id = resultat.getInt("github_id");
+            resultat = statement.executeQuery("SELECT * FROM githuber;");
 
-            githubersFromBdd.add(new Githuber(github_id, name, email, login, avatarUrl));
-        }
+            while (resultat.next()) {
+                String name = resultat.getString("name");
+                String email = resultat.getString("email");
+                String login = resultat.getString("login");
+                String avatarUrl = resultat.getString("avatar_url");
+                int github_id = resultat.getInt("github_id");
 
-        // Deconnexion
-        if (resultat != null) {
+                githubersFromBdd.add(new Githuber(github_id, name, email, login, avatarUrl));
+            }
             resultat.close();
-        }
-        if (statement != null) {
-            statement.close();
         }
 
         return githubersFromBdd;
@@ -62,17 +58,19 @@ public class BddGithuberDAO implements GithuberDAO {
 
         preparedStatement = connection.prepareStatement("INSERT INTO githuber (name, email, login, avatar_url, github_id)" + "  VALUES (?, ?, ?, ?, ?);");
 
-        preparedStatement.setObject(1, githuber.getName(), Types.VARCHAR);
-        preparedStatement.setObject(2, githuber.getEmail(), Types.VARCHAR);
-        preparedStatement.setObject(3, githuber.getLogin(), Types.VARCHAR);
-        preparedStatement.setObject(4, githuber.getAvatarUrl(), Types.VARCHAR);
-        preparedStatement.setObject(5, new Integer(githuber.getGithub_id()), Types.INTEGER);
+        preparedStatement.setString(1, githuber.getName());
+        preparedStatement.setString(2, githuber.getEmail());
+        preparedStatement.setString(3, githuber.getLogin());
+        preparedStatement.setString(4, githuber.getAvatarUrl());
+        preparedStatement.setInt(5, new Integer(githuber.getGithub_id()));
         preparedStatement.executeUpdate();
 
         // Deconnexion
+
         if (resultat != null) {
             resultat.close();
         }
+
         if (preparedStatement != null) {
             preparedStatement.close();
         }
@@ -88,13 +86,14 @@ public class BddGithuberDAO implements GithuberDAO {
 
         preparedStatement = connection.prepareStatement("DELETE FROM githuber WHERE login = ?; ");
 
-        preparedStatement.setObject(1, login, Types.VARCHAR);
+        preparedStatement.setString(1, login);
         preparedStatement.executeUpdate();
 
         // Deconnexion
         if (resultat != null) {
             resultat.close();
         }
+
         if (preparedStatement != null) {
             preparedStatement.close();
         }
