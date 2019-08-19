@@ -25,7 +25,6 @@ public class MemoryGithuberDAO implements GithuberDAO {
 
     Logger logger = Logger.getLogger("logger");
 
-
     @PostConstruct
     private void postConstruct() {
 

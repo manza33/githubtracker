@@ -11,7 +11,7 @@ public class Githuber {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     @Column(name="name")
     private String name;
@@ -23,7 +23,7 @@ public class Githuber {
     private String login;
 
     @Column(name="github_id")
-    private Long github_id;
+    private Integer github_id;
 
     @Column(name="avatar_url")
     private String avatarUrl;
@@ -31,7 +31,7 @@ public class Githuber {
 
     @JsonCreator
     public Githuber(
-            @JsonProperty("id") Long github_id,
+            @JsonProperty("id") Integer github_id,
             @JsonProperty("name") String name,
             @JsonProperty("email") String email,
             @JsonProperty("login") String login,
@@ -56,7 +56,7 @@ public class Githuber {
         return login;
     }
 
-    public Long getGithub_id() {
+    public Integer getGithub_id() {
         return github_id;
     }
 

@@ -6,6 +6,8 @@ fr/wildcodeschool/githubtracker/controller/UnTrackServlet.class
 fr/wildcodeschool/githubtracker/service/GithubersService.class
 fr/wildcodeschool/githubtracker/dao/BddGithuberDAO.class
 fr/wildcodeschool/githubtracker/dao/InMemory.class
+fr/wildcodeschool/githubtracker/dao/JPAGithuberDAO.class
+fr/wildcodeschool/githubtracker/dao/Jpa.class
 fr/wildcodeschool/githubtracker/utils/ConnectionSQL.class
 fr/wildcodeschool/githubtracker/producer/ObjectMapperProducer.class
 fr/wildcodeschool/githubtracker/dao/InBdd.class
