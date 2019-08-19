@@ -2,6 +2,7 @@ package fr.wildcodeschool.githubtracker.service;
 
 import fr.wildcodeschool.githubtracker.dao.GithuberDAO;
 import fr.wildcodeschool.githubtracker.dao.InBdd;
+import fr.wildcodeschool.githubtracker.dao.Jpa;
 import fr.wildcodeschool.githubtracker.model.Githuber;
 import fr.wildcodeschool.githubtracker.utils.GithubUtils;
 
@@ -21,7 +22,7 @@ public class GithubersService {
     private Githuber trackGithuber = null;
 
     @Inject
-    public GithubersService(@InBdd GithuberDAO githuberDAO) {
+    public GithubersService(@Jpa GithuberDAO githuberDAO) {
         this.githuberDAO = githuberDAO;
     }
 
