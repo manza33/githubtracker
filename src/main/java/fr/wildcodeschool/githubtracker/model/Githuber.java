@@ -4,51 +4,47 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name="githuber")
-public class Githuber {
+@Table(name = "githuber")
+public class Githuber implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Basic
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
     @Basic
-    @Column(name="email")
+    @Column(name = "email", nullable = true)
     private String email;
 
     @Basic
-    @Column(name="login")
+    @Column(name = "login")
     private String login;
 
     @Basic
-    @Column(name="github_id")
+    @Column(name = "github_id")
     private Integer github_id;
 
     @Basic
-    @Column(name="avatar_url")
+    @Column(name = "avatar_url")
     private String avatarUrl;
 
     public Githuber() {
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     @JsonCreator
     public Githuber(
-            Integer id,
-            @JsonProperty("github_id") Integer github_id,
+            @JsonProperty("id") Integer github_id,
             @JsonProperty("name") String name,
             @JsonProperty("email") String email,
             @JsonProperty("login") String login,
             @JsonProperty("avatar_url") String avatar_url) {
-        this.id = id;
+
         this.name = name;
         this.email = email;
         this.login = login;
@@ -76,4 +72,7 @@ public class Githuber {
         return avatarUrl;
     }
 
+    public Integer getId() {
+        return id;
+    }
 }

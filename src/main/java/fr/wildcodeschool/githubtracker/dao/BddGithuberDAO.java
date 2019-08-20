@@ -41,7 +41,7 @@ public class BddGithuberDAO implements GithuberDAO {
                 int github_id = resultat.getInt("github_id");
                 int id = resultat.getInt("id");
 
-                githubersFromBdd.add(new Githuber(id, github_id, name, email, login, avatarUrl));
+                githubersFromBdd.add(new Githuber(github_id, name, email, login, avatarUrl));
             }
             resultat.close();
         }
