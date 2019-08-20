@@ -3,72 +3,59 @@ package fr.wildcodeschool.githubtracker.dao;
 import fr.wildcodeschool.githubtracker.model.Githuber;
 import fr.wildcodeschool.githubtracker.utils.GithubUtils;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
+import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
-@ApplicationScoped
+@Transactional
 @Jpa
-public class JPAGithuberDAO implements GithuberDAO {
+public class JPAGithuberDAO implements GithuberDAO, Serializable {
 
-    @PersistenceContext
+    @PersistenceContext(name = "GitUnit")
     private EntityManager entityManager;
 
-    @Inject
-    private GithubUtils githubUtils;
-
-    private Map<String, Githuber> githubersMap = new HashMap<>();
+    @Override
+    public List<Githuber> getGithubers() {
+        return entityManager.createQuery("from Githuber gh", Githuber.class).getResultList();
+    }
 
     @Override
-    public List<Githuber> getGithubers() throws IOException, SQLException {
-        List<Githuber> githubersFromBdd = new ArrayList<>();
-
-        /*ResultSet resultat = null;
-
+    public void saveGithuber(Githuber githuber) {
         // Connexion a SQL
-        //Connection connection = dataSource.getConnection();
-        //statement = connection.createStatement();
+        /*Connection connection = dataSource.getConnection();
 
-        try (Statement statement = connection.createStatement()) {
+        ResultSet resultat = null;
+        PreparedStatement preparedStatement = null;
 
-            resultat = statement.executeQuery("SELECT * FROM githuber;");
+        preparedStatement = connection.prepareStatement("INSERT INTO githuber (name, email, login, avatar_url, github_id)" + "  VALUES (?, ?, ?, ?, ?);");
 
-            while (resultat.next()) {
-                String name = resultat.getString("name");
-                String email = resultat.getString("email");
-                String login = resultat.getString("login");
-                String avatarUrl = resultat.getString("avatar_url");
-                int github_id = resultat.getInt("github_id");
+        preparedStatement.setString(1, githuber.getName());
+        preparedStatement.setString(2, githuber.getEmail());
+        preparedStatement.setString(3, githuber.getLogin());
+        preparedStatement.setString(4, githuber.getAvatarUrl());
+        preparedStatement.setInt(5, new Integer(githuber.getGithub_id()));
+        preparedStatement.executeUpdate();
 
-                githubersFromBdd.add(new Githuber(github_id, name, email, login, avatarUrl));
-            }
+        // Deconnexion
+
+        if (resultat != null) {
             resultat.close();
+        }
+
+        if (preparedStatement != null) {
+            preparedStatement.close();
         }*/
-
-
-        //TypedQuery<Githuber> query = entityManager.createQuery("from BlogEntry be", BlogEntry.class);
-        //return query.getResultList();
-
-        return githubersFromBdd;
+        //entityManager.getTransaction().begin();
+        entityManager.persist( githuber );
     }
 
     @Override
-    public void saveGithuber(Githuber githuber) throws IOException, SQLException {
-
-    }
-
-    @Override
-    public void deleteGithuber(String login) throws SQLException {
-
+    public void deleteGithuber(String id){
+        Integer intId = Integer.parseInt(id);
+        Githuber git = entityManager.find( Githuber.class, intId );
+        entityManager.remove(git);
     }
 }

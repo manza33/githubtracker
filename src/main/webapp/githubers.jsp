@@ -46,7 +46,7 @@
                 <td><img src="${githuber.avatarUrl}" width="100px"></td>
                 <td>
                     <form method="post" action="unTrack" name="FormUnTrack${githuber.login}">
-                        <input name="deleteLogin" type="hidden" value="${githuber.login}">
+                        <input name="deleteId" type="hidden" value="${githuber.id}">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </td>

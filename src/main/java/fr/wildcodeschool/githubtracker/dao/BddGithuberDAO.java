@@ -39,8 +39,9 @@ public class BddGithuberDAO implements GithuberDAO {
                 String login = resultat.getString("login");
                 String avatarUrl = resultat.getString("avatar_url");
                 int github_id = resultat.getInt("github_id");
+                int id = resultat.getInt("id");
 
-                githubersFromBdd.add(new Githuber(github_id, name, email, login, avatarUrl));
+                githubersFromBdd.add(new Githuber(id, github_id, name, email, login, avatarUrl));
             }
             resultat.close();
         }
@@ -77,16 +78,18 @@ public class BddGithuberDAO implements GithuberDAO {
     }
 
     @Override
-    public void deleteGithuber(String login) throws SQLException {
+    public void deleteGithuber(String id) throws SQLException {
+
+        Integer intId = Integer.parseInt(id);
         ResultSet resultat = null;
         PreparedStatement preparedStatement = null;
 
         // Connexion a SQL
         Connection connection = dataSource.getConnection();
 
-        preparedStatement = connection.prepareStatement("DELETE FROM githuber WHERE login = ?; ");
+        preparedStatement = connection.prepareStatement("DELETE FROM githuber WHERE id = ?; ");
 
-        preparedStatement.setString(1, login);
+        preparedStatement.setInt(1, intId);
         preparedStatement.executeUpdate();
 
         // Deconnexion

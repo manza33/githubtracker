@@ -21,10 +21,10 @@ public class UnTrackServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        String deleteLogin = request.getParameter("deleteLogin");
+        String deleteId = request.getParameter("deleteId");
 
        try {
-            githubersService.unTrack(deleteLogin);
+            githubersService.unTrack(deleteId);
         } catch (SQLException e) {
             e.printStackTrace();
         }

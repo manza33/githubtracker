@@ -51,8 +51,8 @@ public class GithubersService {
         return trackGithuber;
     }
 
-    public void unTrack(String login) throws SQLException {
-        githuberDAO.deleteGithuber(login);
+    public void unTrack(String id) throws SQLException {
+        githuberDAO.deleteGithuber(id);
     }
 
 }
